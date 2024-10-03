@@ -52,6 +52,9 @@ body {
   
   /* Estilos de las tarjetas de noticias */
   .news-item {
+    opacity: 0; /* Comienza invisible */
+    animation: fadeIn 0.5s ease-in-out forwards;
+    animation-delay: calc(0.1s * var(--order)); /* Retraso basado en el orden de la tarjeta */
     position: relative;
     background-color: #1e1e1e; /* Fondo oscuro de las tarjetas */
     border: 1px solid #888; /* Borde más grueso */
@@ -170,6 +173,24 @@ body {
     z-index: 10;
     opacity: 0.9;
   }
+
+  @keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px); /* Mover las tarjetas hacia abajo al iniciar */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0); /* La tarjeta vuelve a su posición original */
+    }
+}
+
+/* Aplicar la animación a cada noticia */
+.news-item {
+    opacity: 0; /* Comienza invisible */
+    animation: fadeIn 0.5s ease-in-out forwards;
+    animation-delay: calc(var(--order) * 0.2s); /* Retraso basado en el orden de la tarjeta */
+}
 
 
 
