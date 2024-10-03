@@ -3,19 +3,29 @@ document.addEventListener('DOMContentLoaded', () => {
   
     // Cargar sitios desde un JSON
     async function loadSites() {
-      try {
-        const response = await fetch('/sites.json');
-        const sites = await response.json();
-  
-        sites.forEach(site => {
-          const button = document.createElement('button');
-          button.textContent = site.name;
-          button.addEventListener('click', () => fetchNews(site.url));
-          sitesContainer.appendChild(button);
-        });
-      } catch (error) {
-        console.error('Error loading sites:', error);
-      }
+        try {
+            const response = await fetch('/sites.json');
+            const sites = await response.json();
+    
+            sites.forEach(site => {
+                const button = document.createElement('button');
+                button.textContent = site.name;
+                button.addEventListener('click', () => fetchNews(site.url));
+                sitesContainer.appendChild(button);
+            });
+    
+            // Crear el botón gris con el enlace
+            const linkButton = document.createElement('a');
+            linkButton.href = 'https://chatgpt.com/g/g-NVmCyJOow-resumen-de-noticias-en-espanol';
+            linkButton.target = '_blank'; // Abrir en una nueva pestaña
+            linkButton.classList.add('gray-button');
+            linkButton.textContent = 'Resumen de Noticias en Español';
+    
+            // Añadir el botón al contenedor
+            sitesContainer.appendChild(linkButton);
+        } catch (error) {
+            console.error('Error loading sites:', error);
+        }
     }
   
     loadSites();
